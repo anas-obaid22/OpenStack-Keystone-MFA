@@ -13,11 +13,16 @@ To ensure a modern and reproducible setup, the following environment was used:
 
 
 ## 3. Implementation & Configuration
-### Environment Preparation
-DevStack was deployed with a minimal configuration focusing on Identity and Compute services. Once the stack was functional, the Keystone configuration was modified.
+### Step 1: System Preparation & DevStack Install
+First, the Ubuntu 24.04 environment was updated, and a `stack` user was created.
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo useradd -s /bin/bash -d /opt/stack -m stack
+```
 
-### Keystone Setup
-The `/etc/keystone/keystone.conf` file was updated to enable the `totp` authentication method:
-```ini
-[auth]
-methods = password,token,totp
+### Step 2:Deploy DevStack: Clone the repository and run stack.sh. Ensure your local.conf includes the Keystone service. 
+```bash
+git clone [https://opendev.org/openstack/devstack](https://opendev.org/openstack/devstack)
+cd devstack
+./stack.sh
+```
