@@ -154,9 +154,9 @@ curl -i -s -X POST http://127.0.0.1/identity/v3/auth/tokens \
 ```
 Expected result:
 
-HTTP 401 Unauthorized.
+* HTTP 401 Unauthorized.
 
-Response contains an Openstack-Auth-Receipt header (this is the “partial auth” receipt).
+* Response contains an Openstack-Auth-Receipt header (this is the “partial auth” receipt).
 
 #### Step 2: Complete authentication using TOTP + auth receipt
 Copy the Openstack-Auth-Receipt value from Step 1, then run:
@@ -181,8 +181,23 @@ curl -i -s -X POST http://127.0.0.1/identity/v3/auth/tokens \
 ```
 Expected result:
 
-HTTP 201 Created
+* HTTP 201 Created
 
-Response header includes X-Subject-Token: ...
+* Response header includes X-Subject-Token: ...
+
+## 8. Integration Notes (Challenges)
+During testing, the following practical issues were observed:
+* Time sync matters: If the VM time drifts, TOTP codes fail (solution: ensure system time sync is enabled).
+* Receipt expiration: If you wait too long between Step 1 and Step 2, the auth receipt may expire and you must repeat the process.
+  
+
+## 9. Performance Impact (Simple Measurement)
+To document performance impact, compare authentication time for:
+
+* password-only token request (normal user)
+
+* password + TOTP using auth receipts (admin)
+
+A simple method is to run each request multiple times and record average response time (for example using time + a loop). The exact numbers depend on VM resources, so they should be measured on the lab system and reported in the final submission.
 
 
