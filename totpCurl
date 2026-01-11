@@ -1,0 +1,17 @@
+curl -i -s -X POST http://127.0.0.1/identity/v3/auth/tokens \
+  -H "Content-Type: application/json" \
+  -H "Openstack-Auth-Receipt: PASTE_RECEIPT_HERE" \
+  -d '{
+    "auth": {
+      "identity": {
+        "methods": ["totp"],
+        "totp": {
+          "user": {
+            "name": "admin",
+            "domain": {"name": "Default"},
+            "passcode": "the code from Google Authenticator app"
+          }
+        }
+      }
+    }
+  }'
