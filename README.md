@@ -155,6 +155,7 @@ curl -i -s -X POST http://127.0.0.1/identity/v3/auth/tokens \
 Expected result:
 
 HTTP 401 Unauthorized.
+
 Response contains an Openstack-Auth-Receipt header (this is the “partial auth” receipt).
 
 #### Step 2: Complete authentication using TOTP + auth receipt
@@ -181,6 +182,7 @@ curl -i -s -X POST http://127.0.0.1/identity/v3/auth/tokens \
 Expected result:
 
 HTTP 201 Created
+
 Response header includes X-Subject-Token: ...
 
 
