@@ -1,6 +1,7 @@
 # OpenStack-Keystone-MFA
 Implementation and validation of Multi-Factor Authentication (MFA) for OpenStack Keystone
 
+
 ## 1. Project Overview
 This project demonstrates the implementation and validation of Multi-Factor Authentication (MFA) within an OpenStack environment. The lab focuses on securing high-privilege administrative accounts using TOTP (Time-based One-Time Passwords).
 
